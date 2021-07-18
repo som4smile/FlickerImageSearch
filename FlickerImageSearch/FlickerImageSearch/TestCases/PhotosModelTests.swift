@@ -2,46 +2,50 @@
 //  PhotosModelTests.swift
 //  FlickerImageSearch
 //
-//  Created by SOM on 17/07/21.
+//  Created by SOM on 18/07/21.
 //
 
 import XCTest
 @testable import FlickerImageSearch
 
+class MockJSONData: XCTestCase {
+    
+
+    static let expectedJSON = [ "stat": "ok",
+                                "photos": [
+                                    "page": 1,
+                                    "pages": 1367,
+                                    "perpage": 100,
+                                    "total": 136676,
+                                    "photo": [
+                                        [ "id": "51302087886",
+                                          "owner": "189020000@N08",
+                                          "secret": "01a760e311",
+                                          "server": "65535",
+                                          "farm": 66,
+                                          "title": "Pink Kitten",
+                                          "ispublic": 1,
+                                          "isfriend": 0,
+                                          "isfamily": 0
+                                        ]
+                                    ]
+                                ]
+                                
+    ] as [String : Any]
+    
+    static let inValidJSON = [ "stat": "ok",
+                               "photos": [
+                                    "page": 1,
+                                    "pages": 1367,
+                                    "perpage": 100,
+                                    "total": 136676,
+                                    "photo": [ [] ]
+                               ]
+    ] as [String : Any]
+
+}
+
 class PhotosModelTests: XCTestCase {
-
-    private static let expectedJSON = [ "stat": "ok",
-                                        "photos": [
-                                            "page": 1,
-                                            "pages": 1367,
-                                            "perpage": 100,
-                                            "total": 136676,
-                                            "photo": [
-                                                        [ "id": "51302087886",
-                                                          "owner": "189020000@N08",
-                                                          "secret": "01a760e311",
-                                                          "server": "65535",
-                                                          "farm": 66,
-                                                          "title": "Pink Kitten",
-                                                          "ispublic": 1,
-                                                          "isfriend": 0,
-                                                          "isfamily": 0
-                                                         ]
-                                                     ]
-                                                ]
-    
-                                    ] as [String : Any]
-    
-    private static let inValidJSON = [ "stat": "ok",
-                                       "photos": [
-                                           "page": 1,
-                                           "pages": 1367,
-                                           "perpage": 100,
-                                           "total": 136676,
-                                           "photo": [ [] ]
-                                                ]
-                                    ] as [String : Any]
-
 
     // Convert from JSON to nsdata
     func jsonToNSData(json: [String : Any]) -> Data?{
@@ -54,7 +58,7 @@ class PhotosModelTests: XCTestCase {
     }
     
     func testValidJSON() {
-        guard let jsonData = self.jsonToNSData(json: type(of: self).expectedJSON) else {
+        guard let jsonData = self.jsonToNSData(json: MockJSONData.expectedJSON) else {
             XCTAssertFalse(false)
             return
         }
@@ -73,11 +77,10 @@ class PhotosModelTests: XCTestCase {
     }
     
     func testInvalidJSON() {
-        guard (self.jsonToNSData(json: type(of: self).inValidJSON) != nil) else {
+        guard (self.jsonToNSData(json: MockJSONData.inValidJSON) != nil) else {
             XCTAssertTrue(true)
             return
         }
         XCTAssertFalse(false)
     }
-
 }

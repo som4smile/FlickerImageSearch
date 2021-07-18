@@ -16,11 +16,11 @@ class FlickerImageViewModel: DataService {
     static let shared = FlickerImageViewModel()
     
     private(set) var photosArray = [Photo]()
-    private var pageNo = 1
-    private var totalPages = 1
     private var searchText = ""
     private let successResponse = "Success Response"
     private let errorResponse = "Parsing error"
+    var pageNo = 1
+    var totalPages = 1
 
     func search(text: String, completion: @escaping (Result<String>) -> Void) {
         self.photosArray.removeAll()

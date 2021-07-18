@@ -11,7 +11,6 @@ class FlickerImageConfig: NSObject {
     
     private static let apiKey = "2932ade8b209152a7cbb49b631c4f9b6"
     private static let perPage = 20
-//    private static let imageSize = "m"
     
     private static let searchURL = "https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=\(apiKey)&format=json&nojsoncallback=1&safe_search=1&per_page=\(perPage)&text=%@&page=%ld"
     
