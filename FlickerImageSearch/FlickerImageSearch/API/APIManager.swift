@@ -18,10 +18,19 @@ class APIManager: NSObject {
     private let internetConnectionErrorMessage = "Please check your Internet connection."
     private let errorMessage = "Some error occured. Please try again later."
 
-    func search(searchText: String, pageNo: Int, completion: @escaping (Result<Data>) -> Void) {
+    /**
+     Flicker API request for search given string with pagination.
+     - Parameters
+      - URL: URL for API request.
+      - searchText: text to be search for images.
+      - pageNo: page no for maintianing pagination.
+      - completion: completion handler
+     
+     - Returns recievedResponse: Pass the recieved response to the clouser with success or failure.
+     */
+    func search(url: URL, searchText: String, pageNo: Int, completion: @escaping (Result<Data>) -> Void) {
         
-        guard Reachability.currentReachabilityStatus != .notReachable,
-              let url = FlickerImageConfig.getSerachURL(searchText: searchText, pageNo: pageNo) else {
+        guard Reachability.currentReachabilityStatus != .notReachable else {
             return completion(.Error(self.internetConnectionErrorMessage))
         }
 
@@ -41,6 +50,14 @@ class APIManager: NSObject {
         }.resume()
     }
     
+    /**
+     Flicker API request for downloading images.
+     - Parameters
+      - URL: URL for API request.
+      - completion: completion handler
+     
+     - Returns recievedResponse: Pass the recieved response to the clouser with success or failure.
+     */
     func downloadImage(url: URL, completion: @escaping (Result<UIImage>) -> Void) {
         
         let sessionConfig = URLSessionConfiguration.default

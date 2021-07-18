@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E328305526A4264B00DE8B36 /* FlickerImageViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E328305126A4263F00DE8B36 /* FlickerImageViewModelTests.swift */; };
+		E328307026A42F4400DE8B36 /* APIManagerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E328306A26A42F1800DE8B36 /* APIManagerTests.swift */; };
+		E328307526A4909A00DE8B36 /* ImageCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = E328307426A4909A00DE8B36 /* ImageCache.swift */; };
 		E36B17932699E5BB003E522E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36B17922699E5BB003E522E /* AppDelegate.swift */; };
 		E36B17952699E5BB003E522E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36B17942699E5BB003E522E /* SceneDelegate.swift */; };
 		E36B17972699E5BB003E522E /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E36B17962699E5BB003E522E /* PhotosViewController.swift */; };
@@ -35,6 +38,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E328305126A4263F00DE8B36 /* FlickerImageViewModelTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlickerImageViewModelTests.swift; sourceTree = "<group>"; };
+		E328306A26A42F1800DE8B36 /* APIManagerTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIManagerTests.swift; sourceTree = "<group>"; };
+		E328307426A4909A00DE8B36 /* ImageCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCache.swift; sourceTree = "<group>"; };
 		E36B178F2699E5BB003E522E /* FlickerImageSearch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FlickerImageSearch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E36B17922699E5BB003E522E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E36B17942699E5BB003E522E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -74,6 +80,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E328307326A4908600DE8B36 /* Cache */ = {
+			isa = PBXGroup;
+			children = (
+				E328307426A4909A00DE8B36 /* ImageCache.swift */,
+			);
+			path = Cache;
+			sourceTree = "<group>";
+		};
 		E36B17862699E5BB003E522E = {
 			isa = PBXGroup;
 			children = (
@@ -95,7 +109,7 @@
 		E36B17912699E5BB003E522E /* FlickerImageSearch */ = {
 			isa = PBXGroup;
 			children = (
-				E3BA005526A34C2D0059F25B /* TestCases */,
+				E328307326A4908600DE8B36 /* Cache */,
 				E3BA0030269C89B70059F25B /* API */,
 				E3BA002F269C89A60059F25B /* ViewModel */,
 				E3BA0028269C886F0059F25B /* Model */,
@@ -103,6 +117,7 @@
 				E36B17A72699E5C5003E522E /* ViewController */,
 				E36B17A82699E5CE003E522E /* UI */,
 				E36B17A92699E5D8003E522E /* Supportive */,
+				E3BA005526A34C2D0059F25B /* TestCases */,
 				E36B17942699E5BB003E522E /* SceneDelegate.swift */,
 				E36B179B2699E5BD003E522E /* Assets.xcassets */,
 				E36B179D2699E5BD003E522E /* LaunchScreen.storyboard */,
@@ -175,6 +190,8 @@
 			isa = PBXGroup;
 			children = (
 				E3BA005626A34C5A0059F25B /* PhotosModelTests.swift */,
+				E328305126A4263F00DE8B36 /* FlickerImageViewModelTests.swift */,
+				E328306A26A42F1800DE8B36 /* APIManagerTests.swift */,
 			);
 			path = TestCases;
 			sourceTree = "<group>";
@@ -293,6 +310,7 @@
 				E3BA002A269C88860059F25B /* Photos.swift in Sources */,
 				E3BA001F269C7DFD0059F25B /* ImageCollectionViewFlowLayout.swift in Sources */,
 				E3BA003C269C95CE0059F25B /* FlickerImageConfig.swift in Sources */,
+				E328307526A4909A00DE8B36 /* ImageCache.swift in Sources */,
 				E36B17972699E5BB003E522E /* PhotosViewController.swift in Sources */,
 				E3BA0039269C94EC0059F25B /* Reachability.swift in Sources */,
 				E36B17932699E5BB003E522E /* AppDelegate.swift in Sources */,
@@ -305,7 +323,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E328305526A4264B00DE8B36 /* FlickerImageViewModelTests.swift in Sources */,
 				E3BA006A26A34CE30059F25B /* PhotosModelTests.swift in Sources */,
+				E328307026A42F4400DE8B36 /* APIManagerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
