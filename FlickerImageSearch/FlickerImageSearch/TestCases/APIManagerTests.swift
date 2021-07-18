@@ -14,21 +14,27 @@ class APIManagerTests: XCTestCase {
     private let expect = XCTestExpectation(description:"testing")
     private let pageNo = 1
     
-    func testSearchData() {
+    func testSearchDataSuccess() {
         APIManager.shared.search(searchText: self.searchString, pageNo: self.pageNo, completion: { [weak self] result in
             
             switch result {
-            case .Success( _):
-                break
+            case .Success(let data):
+                if let photos = FlickerImageViewModel.shared.parseResponse(data) {
+                    XCTAssertEqual(photos.page, 1)
+                    XCTAssertEqual(photos.perpage, 20)
+                    XCTAssertNotNil(photos.photo)
+                } else {
+                    XCTFail()
+                }
                 
-            case .Error( _):
-                break
-            
+            case .Error(let errorMessage):
+                print(errorMessage)
+                XCTFail()
             }
             
             self?.expect.fulfill()
         })
-        wait(for: [self.expect], timeout: 5)
+        wait(for: [self.expect], timeout: 15)
     }
 
 }

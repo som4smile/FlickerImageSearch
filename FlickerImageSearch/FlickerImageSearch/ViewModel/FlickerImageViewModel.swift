@@ -63,7 +63,7 @@ class FlickerImageViewModel: DataService {
         }
     }
 
-    private func parseResponse(_ data: Data?) -> Photos? {
+    func parseResponse(_ data: Data?) -> Photos? {
         guard let responseData = data,
               let photosResponse = try? JSONDecoder().decode(PhotosResponse.self, from: responseData),
               let status = photosResponse.stat,
