@@ -18,7 +18,9 @@ class FlickerImageViewModel: DataService {
     private(set) var photosArray = [Photo]()
     private var searchText = ""
     private let successResponse = "Success Response"
-    private let errorResponse = "Parsing error"
+    private let parsingError = "Parsing error"
+    private let errorMessage = "Some error occured. Please try again later."
+
     var pageNo = 1
     var totalPages = 1
 
@@ -30,8 +32,12 @@ class FlickerImageViewModel: DataService {
     
     private func fetchResults(completion:@escaping (Result<String>) -> Void) {
 
-
-        APIManager.shared.search(searchText: self.searchText, pageNo: self.pageNo, completion: { result in
+        guard let url = FlickerImageConfig.getSerachURL(searchText: searchText, pageNo: pageNo) else {
+            completion(.Error(self.errorMessage))
+            return
+        }
+        
+        APIManager.shared.search(url: url, searchText: self.searchText, pageNo: self.pageNo, completion: { result in
             
             switch result {
             case .Success(let data):
@@ -41,10 +47,9 @@ class FlickerImageViewModel: DataService {
                     self.photosArray.append(contentsOf: photos.photo)
                     completion(.Success(self.successResponse))
                 } else {
-                    completion(.Error(self.errorResponse))
+                    completion(.Error(self.parsingError))
                 }
                 
-
             case .Error(let errorMessage):
                 completion(.Error(errorMessage))
 

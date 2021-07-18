@@ -18,10 +18,9 @@ class APIManager: NSObject {
     private let internetConnectionErrorMessage = "Please check your Internet connection."
     private let errorMessage = "Some error occured. Please try again later."
 
-    func search(searchText: String, pageNo: Int, completion: @escaping (Result<Data>) -> Void) {
+    func search(url: URL, searchText: String, pageNo: Int, completion: @escaping (Result<Data>) -> Void) {
         
-        guard Reachability.currentReachabilityStatus != .notReachable,
-              let url = FlickerImageConfig.getSerachURL(searchText: searchText, pageNo: pageNo) else {
+        guard Reachability.currentReachabilityStatus != .notReachable else {
             return completion(.Error(self.internetConnectionErrorMessage))
         }
 
