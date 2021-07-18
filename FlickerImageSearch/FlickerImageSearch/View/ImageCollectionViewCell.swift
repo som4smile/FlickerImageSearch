@@ -15,21 +15,31 @@ class ImageCollectionViewCell: UICollectionViewCell {
     
     var photoModel: Photo? {
         didSet{
-            guard let imageURL = self.photoModel?.imageURLString else { return }
             
-            APIManager.shared.downloadImage(url: imageURL, completion: { result in
+            guard let imageURL = self.photoModel?.imageURLString else { return }
+
+            if let image = ImageCache.shared.getImageFromCache(key: imageURL.absoluteString) {
                 
-                switch result {
-                case .Success(let image):
-                    DispatchQueue.main.async {
-                        self.imageView.image = image
+                //already cached
+                self.imageView.image = image
+            } else {
+                
+                APIManager.shared.downloadImage(url: imageURL, completion: { result in
+                    
+                    switch result {
+                    case .Success(let image):
+
+                        ImageCache.shared.saveImageToCache(key: imageURL.absoluteString, image: image)
+                        DispatchQueue.main.async {
+                            self.imageView.image = image
+                        }
+                        
+                    case .Error(let errorMessage):
+                        print(errorMessage)
                     }
                     
-                case .Error(let errorMessage):
-                    print(errorMessage)
-                }
-                
-            })
+                })
+            }
         }
     }
 }
