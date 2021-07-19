@@ -16,10 +16,9 @@ class PhotosViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        self.imageSearchBar.becomeFirstResponder()
         guard let flowLayout = self.imageCollectionView.collectionViewLayout as? UICollectionViewFlowLayout else { return }
         flowLayout.scrollDirection = .vertical
-
     }
 }
 
@@ -55,11 +54,11 @@ extension PhotosViewController: UICollectionViewDataSource {
 extension PhotosViewController: UISearchBarDelegate {
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        print("searchBar Search ButtonClicked")
 
         searchBar.resignFirstResponder()
         
         guard let text = searchBar.text, text.count > 1 else {
+            self.showAlert(withTitle: "Please enter some text to search..!!", withMessage: "")
             return
         }
         

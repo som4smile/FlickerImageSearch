@@ -50,9 +50,7 @@ class BaseViewController: UIViewController {
     */
     func showAlert(withTitle title: String, withMessage message:String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        let ok = UIAlertAction(title: "OK", style: .default, handler: { action in
-            
-        })
+        let ok = UIAlertAction(title: "OK", style: .default, handler: nil)
         alert.addAction(ok)
         
         DispatchQueue.main.async(execute: {
