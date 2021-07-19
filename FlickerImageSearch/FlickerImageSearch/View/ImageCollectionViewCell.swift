@@ -13,6 +13,11 @@ class ImageCollectionViewCell: UICollectionViewCell {
 
     static let cellIdentifier = "ImageCollectionViewCell"
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        self.imageView.image = UIImage(named: "placeholder")
+    }
+    
     var photoModel: Photo? {
         didSet{
             
